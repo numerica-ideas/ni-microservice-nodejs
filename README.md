@@ -83,6 +83,6 @@ To warm the function 5 times and be sure there are at least 4/5 instances availa
 ### Lambda
 For the lambda deployment we used the .gitlab-ci.yml file to automate the function deployment at AWS-Lambda side using Claudia commands. You should make sure to provide the AWS user that will be used to perform such tasks on your behald via GitLab runners.
 
-Under the hood ClaudisJS uses AWS-CLI package whick is calling AWS API endpoints.
+Under the hood ClaudiaJS uses AWS-CLI which is calling AWS API endpoints.
 
 By dassiorleando (NumericaIdeas.com).
