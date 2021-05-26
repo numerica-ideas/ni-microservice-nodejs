@@ -1,0 +1,16 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sns:Publish",
+                "sns:Subscribe"
+            ],
+            "Resource": [
+                "arn:aws:sns:us-east-1:AWS_ACCOUNT_ID:SI_PROD_EVENTS",
+                "arn:aws:sns:us-east-1:AWS_ACCOUNT_ID:SI_DEV_EVENTS"
+            ]
+        }
+    ]
+}
