@@ -85,4 +85,8 @@ For the lambda deployment we used the .gitlab-ci.yml file to automate the functi
 
 Under the hood ClaudiaJS uses AWS-CLI which is calling AWS API endpoints.
 
+##  Testing
+
+Once ran, we should have the text "SERVICE IS FINE" once trying to access the [API PING](http://localhost:3000/ni-microservice-node/pingify).
+
 By dassiorleando (NumericaIdeas.com).
