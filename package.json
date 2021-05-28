@@ -33,7 +33,7 @@
     "express-jwt-permissions": "1.2.3",
     "http-status": "1.5.0",
     "mongoose": "5.12.12",
-    "node-cron": "2.0.3",
+    "node-cron": "3.0.0",
     "redis": "2.8.0",
     "serverless-http": "2.7.0"
   },
