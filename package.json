@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@types/node": "14.17.1",
-    "claudia": "^5.13.1",
+    "claudia": "5.13.1",
     "tslint": "5.20.1"
   },
   "optionalDependencies": {
