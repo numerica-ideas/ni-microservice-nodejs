@@ -1,5 +1,5 @@
 /**
- * Setting up video express app
+ * Setting up the express app.
  * @author dassiorleando
  */
 const express = require('express');
