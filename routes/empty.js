@@ -32,6 +32,7 @@ router.get('/public', emptyController.public);
  * @group Empty - Operations about empties.
  * @returns {object} 200 - A protected response.
  * @returns {Error}  default - Unexpected error
+ * @security JWT
  */
 router.get('/protected', guard.check([['ADMIN'], ['MODERATOR'], ['USER']]), emptyController.protected);  // Protectd route
 

@@ -97,7 +97,7 @@ let options = {
         type: 'apiKey',
         in: 'header',
         name: 'Authorization',
-        description: "The user's token used for protected endpoints.",
+        description: "The user's token used for protected endpoints, the format is 'Bearer token'.",
       }
     }
   },
