@@ -17,6 +17,7 @@ const router = express.Router();
 const app = express();
 const eJwt = require('express-jwt'); // The middleware for JWT (decrypt to have the req.user object)
 const config = require('./config');
+const expressSwagger = require('express-swagger-generator')(app);
 
 // Enable CORS
 app.use(cors()); // Enable all CORS requests for all routes
@@ -64,7 +65,7 @@ router.use('/empties', emptyRoute);
 // Middleware for handling some errors
 router.use(function (err, req, res, next) {
   if (err.code === 'invalid_token') {
-    res.status(401).send('Invalid token!');
+    res.status(403).send('Invalid token!');
   } else if (err.code === 'permission_denied' || err.code === 'permissions_invalid' || err.name === 'UnauthorizedError') {
     res.status(403).send('Not allowed !');
   } else if (err.code === 'user_object_not_found' || err.code === 'permissions_not_found' || err.code === 'request_property_undefined' || err.code === 'credentials_required') {
@@ -75,6 +76,38 @@ router.use(function (err, req, res, next) {
     res.status(400).json({ success: false, message: Util.getErrorMessage(err) });
   }
 });
+
+// Swagger configurations
+let options = {
+  swaggerDefinition: {
+    info: {
+      description: 'Micro service sample server',
+      title: 'Swagger',
+      version: '1.0.0',
+    },
+    host: `localhost:${config.PORT}`,
+    basePath: '/ni-microservice-node',
+    produces: [
+      "application/json",
+      "application/xml"
+    ],
+    schemes: [ 'http', 'https' ],
+    securityDefinitions: {
+      JWT: {
+        type: 'apiKey',
+        in: 'header',
+        name: 'Authorization',
+        description: "The user's token used for protected endpoints.",
+      }
+    }
+  },
+  basedir: __dirname, // App absolute path
+  files: [ './routes/*.js', './routes/**/*.js' ] //Path to the API handle folder
+};
+
+// Let's disable swagger for production deployment only
+// If enabled, we can import it in Postman to experiment with the API endpoints.
+if (config.ENV !== 'production') expressSwagger(options);
 
 // Catch all other routes then throw
 app.get('*', (req, res) => {

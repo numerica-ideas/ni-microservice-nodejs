@@ -16,7 +16,23 @@ router.use(eJwt({
 }));
 
 // Some empty routes
+
+/**
+ * Runs the empties public request.
+ * @route GET /empties/public
+ * @group Empty - Operations about empties.
+ * @returns {object} 200 - A public response.
+ * @returns {Error}  default - Unexpected error
+ */
 router.get('/public', emptyController.public);
+
+/**
+ * Runs the empties protected request.
+ * @route GET /empties/protected
+ * @group Empty - Operations about empties.
+ * @returns {object} 200 - A protected response.
+ * @returns {Error}  default - Unexpected error
+ */
 router.get('/protected', guard.check([['ADMIN'], ['MODERATOR'], ['USER']]), emptyController.protected);  // Protectd route
 
 module.exports = router;

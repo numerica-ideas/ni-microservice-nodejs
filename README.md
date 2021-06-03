@@ -15,6 +15,8 @@ Note: *AWS CLI* isn't required since the CI/CD pipeline will always auto-deploy 
 
 Run `node server.js` or `npm start` or `forever start server.js`.
 
+Once it's running (non production profile), you can access the Swagger generated API docs at http://localhost:3000/api-docs.
+
 ## Environment variables
 ### (EC2 - VPS)
 Use the .env (a copy of .env.sample file) to store sensitive config informations. The vars in used should be define in the config/index.js file explicitly for security purposes.
