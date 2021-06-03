@@ -6,28 +6,30 @@ Let's note that for EC2 (VPS) deployment Redis is mainly in used for inter-compo
 ## Prerequisites
 - **MongoDB** the NoSQL database management system.
 - **NodeJS** installed and running, version >=10 (14 is recommended).
-- **Redis** installed and running, it use for the caching layer and some inter-services communication.
+- **Redis** installed and running, it's used for the caching layer and some inter-services communication.
 - **AWS CLI** for lambda deployments using NPM Scripts.
 
 Note: *AWS CLI* isn't required since the CI/CD pipeline will always auto-deploy the App on changes made on develop (dev) and master (prod) branches.
 
 ## Running
 
-Run `node server.js` or `npm start` or `forever start server.js`.
+First, you should install the dependencies by typing `npm install` command from the root folder of the project.
+
+Then you can run it by executing either `node server.js`, `npm start`, `forever start server.js` or simply `nodemon server` (considering you have it installed) which enables live reloading at the same time.
 
 Once it's running (non production profile), you can access the Swagger generated API docs at http://localhost:3000/api-docs.
 
-## Environment variables
+s## Environment variables
 ### (EC2 - VPS)
-Use the .env (a copy of .env.sample file) to store sensitive config informations. The vars in used should be define in the config/index.js file explicitly for security purposes.
+Use the .env (a copy of .env.sample file) to store sensitive config informations. The vars in use should be define in the config/index.js file explicitly for clarity/security purposes.
 
 Be sure the lambda role has the "AWSLambdaFullAccess" permission.
 
 ### Lambda
 
-- **dev.json** is use for development.
+- **dev.json** is in use for development.
 
-- **prod.json** is use for production.
+- **prod.json** is in use for production.
 
 Both files are created from **env.json** and are fetched/uploaded using the scripts **set-vars:env & get-vars:env**. These env variable are stored into secure buckets (ni-variables-dev & ni-variables-prod) S3 side.
 
