@@ -15,8 +15,6 @@ router.use(eJwt({
     credentialsRequired: false      // Turn this to true if all the routes below are protected
 }));
 
-// Some empty routes
-
 /**
  * Runs the empties public request.
  * @route GET /empties/public

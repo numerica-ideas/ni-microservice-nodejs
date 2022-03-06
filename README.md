@@ -1,4 +1,5 @@
-# NumericaIdeas - microservice (NodeJS)
+# NumericaIdeas - Microservice (NodeJS) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fnumerica-ideas%2Fni-microservice-nodejs&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://blog.numericaideas.com)
+
 This package serves as a simple micro-service usable to build highly scalable micro backend packages to deploy in the cloud  either on EC2 (VPS) or Lambda (recommended).
 
 Let's note that for EC2 (VPS) deployment Redis is mainly in used for inter-components communication, while AWS-SNS is used for the lambda path.
