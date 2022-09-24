@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./bin",   // Output folder
+    "rootDir": "./src", // Our TypeScript files
+    "lib": ["esnext", "dom"],
+    "target": "es6",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+  }
+}

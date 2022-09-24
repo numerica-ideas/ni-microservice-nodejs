@@ -2,8 +2,10 @@
  * NI singleton Redis connection lib.
  * @author dassiorleando
  */
-const config = require('../config');
+import { Config } from '../config';
 const Redis = require('bluebird').promisifyAll(require('redis'));
+
+const global: any = {};
 
 /**
  * Explicit connection to Redis server both for authenticated (prod) and unauthenticated (dev) ways

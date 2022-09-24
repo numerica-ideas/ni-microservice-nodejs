@@ -2,29 +2,30 @@
  * Setting up the microservice server.
  * @author dassiorleando
  */
-const dotenvResult = require('dotenv').config();
-const app = require('./app');
-const http = require('http');
-const Util = require('./services/util');
-const config = require('./config');
+import dotenv from 'dotenv';
+import * as app from './app';
+import http from 'http';
+import * as Util from './services/util';
+import { Config } from './config';
 
+const dotenvResult = dotenv.config();
 if (dotenvResult.error) {
   console.log('===== Error loading the .env file =====');
   process.exit(1);
 }
 
 // Initialization
-Util.init(config);
+Util.init(Config);
 
 /**
  * Create HTTP server.
  */
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Get port from environment and store in Express.
  */
-const port = config.PORT;
+const port = Config.PORT;
 app.set('port', port);
 app.set('trust proxy', true);
 

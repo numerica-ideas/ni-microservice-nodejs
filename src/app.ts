@@ -2,21 +2,21 @@
  * Setting up the express app.
  * @author dassiorleando
  */
-const express = require('express');
+import express from 'express';
 const db = require('./lib/db')();
 const redisClient = require('./lib/redis')();
-const Util = require('./services/util');
-const cors = require('cors');
-const cron = require('node-cron');
+import * as Util from './services/util';
+import cors from 'cors';
+import cron from 'node-cron';
 
 // Some routes
-const emptyRoute = require('./routes/empty');
+import * as emptyRoute from './routes/empty';
 
-const redisSubService = require('./services/redis.sub');
+import * as redisSubService from './services/redis.sub';
 const router = express.Router();
 const app = express();
-const eJwt = require('express-jwt'); // The middleware for JWT (decrypt to have the req.user object)
-const config = require('./config');
+import eJwt from 'express-jwt'; // The middleware for JWT (decrypt to have the req.user object)
+import { Config } from './config';
 const expressSwagger = require('express-swagger-generator')(app);
 
 // Enable CORS
@@ -28,7 +28,7 @@ app.use(express.urlencoded({ limit: '50000mb', extended: false }));  // form-url
 
 // express-jwt config
 app.use(eJwt({
-  secret: config.JWT_SECRET,
+  secret: Config.JWT_SECRET,
   credentialsRequired: false
 }));
 
@@ -41,7 +41,7 @@ router.use('/empties', emptyRoute);
 
 // Ingesting App events when deployed into a server, either we get them via SNS
 (async () => {
-  if (!config.IS_LAMBDA) {
+  if (!Config.IS_LAMBDA) {
     // Loading Redis ingest and subscriber services for server deployment
     redisSubService.ingestingEvents();
     redisSubService.subscribing();
@@ -85,7 +85,7 @@ let options = {
       title: 'Swagger',
       version: '1.0.0',
     },
-    host: `localhost:${config.PORT}`,
+    host: `localhost:${Config.PORT}`,
     basePath: '/ni-microservice-node',
     produces: [
       "application/json",
@@ -107,11 +107,11 @@ let options = {
 
 // Let's disable swagger for production deployment only
 // If enabled, we can import it in Postman to experiment with the API endpoints.
-if (config.ENV !== 'production') expressSwagger(options);
+if (Config.ENV !== 'production') expressSwagger(options);
 
 // Catch all other routes then throw
 app.get('*', (req, res) => {
   res.status(404).send('Resource Not Found');
 });
 
-module.exports = app;
+export = app;

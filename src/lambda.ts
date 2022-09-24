@@ -2,14 +2,14 @@
  * AWS Lambda handler.
  * @author dassiorleando
  */
-const config = require('./config');
-const app = require('./app');
-const Util = require('./services/util');
-const serverless = require('serverless-http');
-const snsSubService = require('./services/sns.sub');
+import { Config } from './config';
+import * as app from './app';
+import * as Util from './services/util';
+import serverless from 'serverless-http';
+import * as snsSubService from './services/sns.sub';
 
 // Initialization
-Util.init(config);
+Util.init(Config);
 
 // Serverless handler
 const handle = serverless(app);
@@ -20,7 +20,7 @@ const handle = serverless(app);
  * @param {Object} context the context
  * @returns {void}
  */
-exports.handler = (event, context, callback) => {
+export const handler = (event, context, callback) => {
 	console.log('The stage is: ' + process.env.NODE_ENV);
 	
 	// Don't wait for the event loop to be empty to return the callback (mongoose/redis pool and/or cached variables).

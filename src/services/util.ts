@@ -7,7 +7,7 @@
  * Default callaback doing nothing
  * @returns {void}
  */
-exports.noop = function () {
+export const noop = function () {
   // Nothing
 }
 
@@ -16,7 +16,7 @@ exports.noop = function () {
  * @param {Object} error The error to show
  * @returns {void}
  */
-exports.error = function (error) {
+export const error = function (error) {
   console.error('❌ Something went wrong', error);
 }
 
@@ -25,7 +25,7 @@ exports.error = function (error) {
  * @param {Object} config The config we defined into the corresponding folder
  * @returns {boolean} If or not we succeeded to initiate the App
  */
-exports.init = function (config) {
+export const init = function (config) {
   if (!config) return false;
   console.log('Initing configs ...');
   
@@ -41,7 +41,7 @@ exports.init = function (config) {
 /**
  * Get unique error field name
  */
-var getUniqueErrorMessage = function (err) {
+const getUniqueErrorMessage = function (err) {
   var output;
 
   try {
@@ -58,7 +58,7 @@ var getUniqueErrorMessage = function (err) {
 /**
  * Get the error message from error object
  */
-exports.getErrorMessage = function (err) {
+export const getErrorMessage = function (err) {
   var message = '';
 
   if (typeof err === 'string') {
@@ -85,4 +85,3 @@ exports.getErrorMessage = function (err) {
 
   return message;
 };
-

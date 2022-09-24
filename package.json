@@ -1,11 +1,17 @@
 {
   "name": "ni-microservice-nodejs",
   "description": "NumericaIdeas NodeJS basic microservice for server (EC2) and cloud function (Lambda) deployments.",
-  "author": "Dassi Orleando <dassi@numericaideas.com>",
+  "author": "NumericaIdeas Network: Orleando Dassi",
   "version": "1.5.0",
   "homepage": "https://github.com/numerica-ideas/ni-microservice-nodejs",
   "license": "MIT",
+  "main": "bin/index",
+  "files": [
+    "bin/**/*.*",
+    "package.json"
+  ],
   "scripts": {
+    "build": "tsc",
     "start": "node server.js",
     "create": "claudia create --name NiMicroService --region us-east-1 --handler lambda.handler --deploy-proxy-api --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip --timeout 900 --memory 1024 --aws-retries 0 --policies policies --security-group-ids sg-xxxxxxxxxxxxxxxxxxx --subnet-ids subnet-xxxxxxxxxxxxxx",
     "deploy:dev": "npm run get-vars:dev && claudia update --version dev --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip",
@@ -41,7 +47,8 @@
   "devDependencies": {
     "@types/node": "14.17.2",
     "claudia": "5.13.1",
-    "tslint": "5.20.1"
+    "tslint": "5.20.1",
+    "typescript": "^4.8.3"
   },
   "optionalDependencies": {
     "aws-sdk": "^2.703.0"
