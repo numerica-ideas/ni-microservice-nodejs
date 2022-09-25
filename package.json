@@ -22,7 +22,7 @@
     "get-vars:prod": "aws s3 cp s3://ni-variables-prod/microservice.json prod.json"
   },
   "engines": {
-    "node": "14"
+    "node": "16"
   },
   "private": true,
   "dependencies": {
@@ -39,7 +39,7 @@
     "serverless-http": "2.7.0"
   },
   "devDependencies": {
-    "@types/node": "14.17.2",
+    "@types/node": "16.11.60",
     "claudia": "5.13.1",
     "tslint": "5.20.1"
   },
