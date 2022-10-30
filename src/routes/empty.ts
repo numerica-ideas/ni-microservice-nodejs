@@ -2,16 +2,17 @@
  * Empty route.
  * @author dassiorleando
  */
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const eJwt = require('express-jwt');
-const config = require('../config');
-const emptyController = require('../controllers/empty');
-const guard = require('express-jwt-permissions')();
+import eJwt from 'express-jwt';
+import { Config } from '../config';
+import * as emptyController from '../controllers/empty';
+import eJwtPerm from 'express-jwt-permissions';
+const guard = eJwtPerm();
 
 // JWT authentication may be required
 router.use(eJwt({
-    secret: config.JWT_SECRET,
+    secret: Config.JWT_SECRET,
     credentialsRequired: false      // Turn this to true if all the routes below are protected
 }));
 
@@ -22,7 +23,7 @@ router.use(eJwt({
  * @returns {object} 200 - A public response.
  * @returns {Error}  default - Unexpected error
  */
-router.get('/public', emptyController.public);
+router.get('/public', emptyController.publicFunc);
 
 /**
  * Runs the empties protected request.
@@ -32,6 +33,6 @@ router.get('/public', emptyController.public);
  * @returns {Error}  default - Unexpected error
  * @security JWT
  */
-router.get('/protected', guard.check([['ADMIN'], ['MODERATOR'], ['USER']]), emptyController.protected);  // Protectd route
+router.get('/protected', guard.check([['ADMIN'], ['MODERATOR'], ['USER']]), emptyController.protectedFunc);  // Protectd route
 
-module.exports = router;
+export = router;

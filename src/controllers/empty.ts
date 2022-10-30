@@ -3,15 +3,15 @@
  * @author dassiorleando
  * @since 1.5.0
  */
-const status = require('http-status');
-const emptyService = require('../services/empty');
+import * as status from 'http-status';
+import * as emptyService from '../services/empty';
 
 /**
  * A public action.
  * @param {*} req 
  * @param {*} res 
  */
-exports.public = async (req, res) => {
+export const publicFunc = async (req, res) => {
     res.status(status.OK).json({ success: true, message: emptyService.aFunction(true) });
 }
 
@@ -20,6 +20,6 @@ exports.public = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-exports.protected = async (req, res) => {
+export const protectedFunc = async (req, res) => {
     res.status(status.OK).json({ success: true, message: emptyService.aFunction(false) });
 }

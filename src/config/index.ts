@@ -2,7 +2,7 @@
  * Config file depending on the env.
  * @author dassiorleando
  */
-module.exports = {
+export const Config = {
     // Process config
     PORT: process.env.PORT || '3000',
     ENV: process.env.NODE_ENV || 'dev',
@@ -20,6 +20,6 @@ module.exports = {
     JWT_SECRET: process.env.JWT_SECRET,
 
     // MongoDB uri
-    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost/ni_microservice_db'
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://127.0.0.1/ni_microservice_db'
 
 }

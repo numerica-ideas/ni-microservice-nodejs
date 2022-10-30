@@ -3,8 +3,8 @@
  * @since 1.5.0
  * @author dassiorleando
  */
-const AWS = require('aws-sdk');
-const config = require('../config');
+import { SNS } from 'aws-sdk';
+import { Config } from '../config';
 
 /**
  * Publishes a message to an SNS topic.
@@ -12,12 +12,12 @@ const config = require('../config');
  * @param {object} dataToSend The data to send.
  * @returns {Promise<object>} Promise that resolves to the message sent.
  */
-exports.publishToTopic = async function (topic, dataToSend) {
+export const publishToTopic = async function (topic, dataToSend) {
     if (!topic || !dataToSend) return Promise.reject({ success: false, message: 'Invalid data provided for SNS push.' });
 
     // The parameter
-    var params = {
-        TopicArn: config.TOPIC_ARN,
+    const params: any = {
+        TopicArn: Config.TOPIC_ARN,
         Message: JSON.stringify(dataToSend),
         MessageAttributes: {
             'type': {
@@ -26,5 +26,5 @@ exports.publishToTopic = async function (topic, dataToSend) {
             }
         }
     }
-    return new AWS.SNS({ apiVersion: '2010-03-31' }).publish(params).promise();
+    return new SNS({ apiVersion: '2010-03-31' }).publish(params).promise();
 }
