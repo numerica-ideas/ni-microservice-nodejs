@@ -20,6 +20,6 @@ export const Config = {
     JWT_SECRET: process.env.JWT_SECRET,
 
     // MongoDB uri
-    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost/ni_microservice_db'
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://127.0.0.1/ni_microservice_db'
 
 }

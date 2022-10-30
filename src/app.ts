@@ -2,7 +2,7 @@
  * Setting up the express app.
  * @author dassiorleando
  */
-import express from 'express';
+import express, { Express } from 'express';
 const db = require('./lib/db')();
 const redisClient = require('./lib/redis')();
 import * as Util from './services/util';
@@ -10,11 +10,11 @@ import cors from 'cors';
 import cron from 'node-cron';
 
 // Some routes
-import * as emptyRoute from './routes/empty';
+import emptyRoute from './routes/empty';
 
 import * as redisSubService from './services/redis.sub';
 const router = express.Router();
-const app = express();
+const app: Express = express();
 import eJwt from 'express-jwt'; // The middleware for JWT (decrypt to have the req.user object)
 import { Config } from './config';
 const expressSwagger = require('express-swagger-generator')(app);
@@ -63,7 +63,7 @@ router.use('/empties', emptyRoute);
 })();
 
 // Middleware for handling some errors
-router.use(function (err, req, res, next) {
+app.use(function (err, req, res, next) {
   if (err.code === 'invalid_token') {
     res.status(403).send('Invalid token!');
   } else if (err.code === 'permission_denied' || err.code === 'permissions_invalid' || err.name === 'UnauthorizedError') {

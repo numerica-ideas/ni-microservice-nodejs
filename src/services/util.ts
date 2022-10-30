@@ -7,7 +7,7 @@
  * Default callaback doing nothing
  * @returns {void}
  */
-export const noop = function () {
+export const noop = function (error: any, data: any): void {
   // Nothing
 }
 

@@ -2,7 +2,7 @@
  * NI singleton MongoDB connection lib.
  * @author dassiorleando
  */
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import { Config } from '../config';
 import * as Util from '../services/util';
 
@@ -20,7 +20,8 @@ module.exports = () => {
 
   // explicit connect
   function connect () {
-    mongoose.connect(Config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: false, reconnectTries: 30, reconnectInterval: 500, auto_reconnect: true }).then(() => {
+    const options: mongoose.ConnectOptions = { useNewUrlParser: true, useUnifiedTopology: false, reconnectTries: 30, reconnectInterval: 500, autoReconnect: true };
+    mongoose.connect(Config.MONGODB_URI, options).then(() => {
     }).catch(Util.error);
   }
 

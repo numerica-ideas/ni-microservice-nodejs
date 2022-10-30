@@ -4,7 +4,7 @@
  */
 import express from 'express';
 const router = express.Router();
-import * as eJwt from 'express-jwt';
+import eJwt from 'express-jwt';
 import { Config } from '../config';
 import * as emptyController from '../controllers/empty';
 import eJwtPerm from 'express-jwt-permissions';

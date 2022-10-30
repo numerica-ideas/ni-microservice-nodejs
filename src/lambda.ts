@@ -39,6 +39,6 @@ export const handler = (event, context, callback) => {
 		// Investing other SNS notification for inter-microservices communication
 		snsSubService.ingestingEvents(eventData.Sns, callback);
 	} else {
-		return handle(event, context, callback);
+		return handle(event, context);
 	}
 }

@@ -12,8 +12,8 @@ const global: any = {};
  * @returns {void}
  */
 function connect() {
-    const options = { host: config.REDIS_HOST, port: config.REDIS_PORT, password: config.REDIS_AUTH, tls: {}, retryStrategy, prefix: config.ENV + ':' };
-    if (!config.REDIS_AUTH) {
+    const options = { host: Config.REDIS_HOST, port: Config.REDIS_PORT, password: Config.REDIS_AUTH, tls: {}, retryStrategy, prefix: Config.ENV + ':' };
+    if (!Config.REDIS_AUTH) {
         delete options.tls;
         delete options.password;
     }
