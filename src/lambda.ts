@@ -17,7 +17,7 @@ const handle = serverless(app);
 /**
  * The Lambda handler is required to run the App on AWS Lambda
  * @param {Object} event the event starting the function (the request)
- * @param {Object} context the context
+ * @param {Object} context the context object.
  * @returns {void}
  */
 export const handler = (event, context, callback) => {

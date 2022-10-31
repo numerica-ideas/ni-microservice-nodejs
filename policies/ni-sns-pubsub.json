@@ -8,8 +8,8 @@
                 "sns:Subscribe"
             ],
             "Resource": [
-                "arn:aws:sns:us-east-1:AWS_ACCOUNT_ID:SI_PROD_EVENTS",
-                "arn:aws:sns:us-east-1:AWS_ACCOUNT_ID:SI_DEV_EVENTS"
+                "arn:aws:sns:us-east-1:AWS_ACCOUNT_ID:NI_PROD_EVENTS",
+                "arn:aws:sns:us-east-1:AWS_ACCOUNT_ID:NI_DEV_EVENTS"
             ]
         }
     ]

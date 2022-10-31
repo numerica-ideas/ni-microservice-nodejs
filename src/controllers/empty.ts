@@ -8,8 +8,8 @@ import * as emptyService from '../services/empty';
 
 /**
  * A public action.
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 export const publicFunc = async (req, res) => {
     res.status(status.OK).json({ success: true, message: emptyService.aFunction(true) });
@@ -17,8 +17,8 @@ export const publicFunc = async (req, res) => {
 
 /**
  * A protected action.
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 export const protectedFunc = async (req, res) => {
     res.status(status.OK).json({ success: true, message: emptyService.aFunction(false) });
