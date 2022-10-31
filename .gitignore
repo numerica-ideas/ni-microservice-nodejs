@@ -3,17 +3,13 @@
 # compiled output
 /bin
 /dist
-/www
-/installers
 /tmp
 /out-tsc
 build/
+target
 
 # dependencies
 /node_modules
-/electron/dist
-/electron/installers
-/electron/node_modules
 
 # IDEs and editors
 /.idea
@@ -50,4 +46,3 @@ Thumbs.db
 dev.json
 prod.json
 /docs
-code.zip

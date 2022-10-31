@@ -32,7 +32,7 @@ app.set('trust proxy', true);
 
 /**
  * Listen on provided port, on all network interfaces.
- * @param {number} port the port to run the project on
+ * @param {number} port the port to run the project on.
  * @returns {void}
  */
 server.listen(port, function () {

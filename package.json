@@ -14,7 +14,7 @@
     "build": "tsc",
     "start": "npm run build && node bin/server.js",
     "start-light": "node bin/server.js",
-    "create": "claudia create --name NiMicroService --region us-east-1 --handler lambda.handler --deploy-proxy-api --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip --timeout 900 --memory 1024 --aws-retries 0 --policies policies --security-group-ids sg-xxxxxxxxxxxxxxxxxxx --subnet-ids subnet-xxxxxxxxxxxxxx",
+    "create": "claudia create --name NiMicroService --region us-east-1 --handler lambda.handler --deploy-proxy-api --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip --timeout 900 --memory 1024 --aws-retries 0 --policies policies",
     "deploy:dev": "npm run get-vars:dev && claudia update --version dev --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip",
     "deploy:prod": "npm run get-vars:prod && claudia update --version prod --set-env-from-json prod.json --use-s3-bucket ni-deployments --s3-key ni-microservice-prod.zip",
     "sns:dev": "claudia add-sns-event-source --topic arn:aws:sns:us-east-1:AWS_ACCOUNT_ID:NI_DEV_EVENTS --filter-policy-file policy.json --version dev",

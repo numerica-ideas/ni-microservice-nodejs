@@ -1,7 +1,7 @@
-# Basic CI pipeline to deploy ni-microservice-nodejs on AWS-Lambda.
+# Basic CI pipeline to deploy "ni-microservice-nodejs" as an AWS Lambda function.
 # This files assume you are running CI for develop (dev) and master (prod) branches only.
 # In a bigger project you way have more deployments, so you'll need to customise the setup a little bit.
-# Note: Do remember to protect your develop and master branches and be sure your CI variables are hidden in the setup at GitLab side.
+# Note: Do remember to protect your develop and master branches and be sure your CI variables are hidden in the setup on GitLab side.
 # GitHub Repository: https://github.com/numerica-ideas/ni-microservice-nodejs
 #
 # @author dassiorleando
@@ -20,7 +20,7 @@ cache:
   paths:
     - node_modules/
 
-# The dependencies job, that run `npm install` to make sure we have all our dependencies in place
+# The dependencies job (build stage), that run `npm install` to make sure we have all our dependencies in place
 dependencies:
   stage: build
   script: npm install
