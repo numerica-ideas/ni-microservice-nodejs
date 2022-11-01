@@ -38,7 +38,3 @@ app.set('trust proxy', true);
 server.listen(port, function () {
   console.log(`Numerica Ideas - microservice: running on http://localhost:${port}`);
 });
-
-server.on('error', function (error) {
-  console.error(error);
-});
