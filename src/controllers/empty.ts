@@ -4,6 +4,7 @@
  * @since 1.5.0
  */
 import * as status from 'http-status';
+import { Request, Response } from 'express';
 import * as emptyService from '../services/empty';
 
 /**
@@ -11,7 +12,7 @@ import * as emptyService from '../services/empty';
  * @param {*} req
  * @param {*} res
  */
-export const publicFunc = async (req, res) => {
+export const publicFunc = async (req: Request, res: Response) => {
     res.status(status.OK).json({ success: true, message: emptyService.aFunction(true) });
 }
 
@@ -20,6 +21,6 @@ export const publicFunc = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-export const protectedFunc = async (req, res) => {
+export const protectedFunc = async (req: Request, res: Response) => {
     res.status(status.OK).json({ success: true, message: emptyService.aFunction(false) });
 }

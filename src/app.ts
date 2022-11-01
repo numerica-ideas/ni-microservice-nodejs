@@ -2,7 +2,7 @@
  * Setting up the express app.
  * @author dassiorleando
  */
-import express, { Express } from 'express';
+import express, { Express, Request, Response, NextFunction } from 'express';
 const db = require('./lib/db')();
 const redisClient = require('./lib/redis')();
 import * as Util from './services/util';
@@ -36,7 +36,7 @@ app.use(eJwt({
 app.use('/ni-microservice-node', router);
 
 // Set our api routes
-router.get('/pingify', (req, res) => res.send('SERVICE IS FINE'));
+router.get('/pingify', (req: Request, res: Response) => res.send('SERVICE IS FINE'));
 router.use('/empties', emptyRoute);
 
 // Ingesting App events when deployed into a server, either we get them via SNS
@@ -62,8 +62,8 @@ router.use('/empties', emptyRoute);
   }
 })();
 
-// Middleware for handling some errors
-app.use(function (err, req, res, next) {
+// Middleware for errors handling
+app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
   if (err.code === 'invalid_token') {
     res.status(403).send('Invalid token!');
   } else if (err.code === 'permission_denied' || err.code === 'permissions_invalid' || err.name === 'UnauthorizedError') {
@@ -110,7 +110,7 @@ let options = {
 if (Config.ENV !== 'production') expressSwagger(options);
 
 // Catch all other routes then throw
-app.get('*', (req, res) => {
+app.get('*', (req: Request, res: Response) => {
   res.status(404).send('Resource Not Found');
 });
 
