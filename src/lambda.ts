@@ -12,7 +12,7 @@ import * as snsSubService from './services/sns.sub';
 Util.init(Config);
 
 // Serverless handler
-const handle = serverless(app);
+const handle = serverless(app as any);
 
 /**
  * The Lambda handler is required to run the App on AWS Lambda
