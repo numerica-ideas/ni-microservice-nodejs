@@ -2,9 +2,9 @@
  * NI singleton MongoDB connection lib.
  * @author dassiorleando
  */
-import mongoose from 'mongoose';
-import { Config } from '../config';
 import * as Util from '../services/util';
+import { Config } from '../config';
+import { connect, connection, ConnectOptions } from 'mongoose';
 
 const global: any = {};
 
@@ -16,16 +16,15 @@ module.exports = () => {
   global.isDBConnected = false;
 
   // Database connection
-  const db = mongoose.connection;
+  const db = connection;
 
   // explicit connect
-  function connect () {
-    const options: mongoose.ConnectOptions = { useNewUrlParser: true, useUnifiedTopology: false, reconnectTries: 30, reconnectInterval: 500, autoReconnect: true };
-    mongoose.connect(Config.MONGODB_URI, options).then(() => {
-    }).catch(Util.error);
+  function dbConnect () {
+    const options: ConnectOptions = { useNewUrlParser: true, useUnifiedTopology: false, reconnectTries: 30, reconnectInterval: 500, autoReconnect: true };
+    connect(Config.MONGODB_URI, options).then(() => {}).catch(Util.error);
   }
 
-  connect();
+  dbConnect();
 
   // Connection events
   db.on('connected', function () {
@@ -43,7 +42,7 @@ module.exports = () => {
 
   db.on('disconnected', function () {
     console.log('MongoDB is disonnected!');
-    if (!global.isDBConnected) connect();
+    if (!global.isDBConnected) dbConnect();
   });
 
   // Close the Mongoose connection, when receiving SIGINT
@@ -53,7 +52,4 @@ module.exports = () => {
         process.exit(0);
     });
   });
-
-  // Registering schemas
-  require('../models/empty');
 }

@@ -3,11 +3,17 @@
  * @author dassiorleando
  * @since 1.5.0
  */
-import * as mongoose from 'mongoose';
-const Schema = mongoose.Schema;
+import { Schema, model, Document } from 'mongoose';
 
-const emptySchema = new Schema({
-    title: String,
+export interface IEmpty extends Document {
+    title: string;
+    descriptdion: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const emptySchema = new Schema<IEmpty>({
+    title: { type: String, required: true },
     description: String,
     createdAt: Date,
     updatedAt: Date
@@ -15,7 +21,7 @@ const emptySchema = new Schema({
 
 emptySchema.pre('save', function (next) {
     const currentDate = new Date();
-  
+
     // Edit the updatedAt field to the current date
     if (!this['keepUpdatedDate']) this['updatedAt'] = currentDate;
 
@@ -25,6 +31,4 @@ emptySchema.pre('save', function (next) {
     next();
 });
 
-const Empty = mongoose.model('Empty', emptySchema);
-
-export = Empty;
+export const Empty = model<IEmpty>('Empty', emptySchema);
