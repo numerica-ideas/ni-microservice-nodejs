@@ -8,6 +8,6 @@ export const Constant = {
     KEY2: 'VALUE2',
 
     // Pub-sub topics to listen, for lambda mention these into the file policy.json
-    EVENTS: [ 'topicA', 'topicB' ]
+    EVENTS: ['topicA', 'topicB']
 
 };

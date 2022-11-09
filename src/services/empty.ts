@@ -9,5 +9,5 @@
  * @returns {string} Just a simple message for now.
  */
 export const aFunction = function (isPublic = false) {
-  return isPublic ? 'Public route' : 'Protected route';
+	return isPublic ? 'Public route' : 'Protected route';
 }

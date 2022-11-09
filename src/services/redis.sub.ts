@@ -12,7 +12,7 @@ const redisClient = require('../lib/redis')(true);
  * Ingesting incoming App Events to save.
  * Coming from different sources (microservices).
  */
- export const ingestingEvents = function (callback = Util.noop) {
+export const ingestingEvents = function (callback = Util.noop) {
     redisClient.on('message', function (channel, data) {
         console.log('New event received');
         console.log('Microservice Events ---> Message: ' + data + ' on channel: ' + channel + ' just arrived!');

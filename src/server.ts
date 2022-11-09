@@ -11,8 +11,8 @@ import * as Util from './services/util';
 import { Config } from './config';
 
 if (dotenvResult.error) {
-  console.log('===== Error loading the .env file =====');
-  process.exit(1);
+	console.log('===== Error loading the .env file =====');
+	process.exit(1);
 }
 
 // Initialization
@@ -36,5 +36,5 @@ app.set('trust proxy', true);
  * @returns {void}
  */
 server.listen(port, function () {
-  console.log(`Numerica Ideas - microservice: running on http://localhost:${port}`);
+	console.log(`Numerica Ideas - microservice: running on http://localhost:${port}`);
 });
