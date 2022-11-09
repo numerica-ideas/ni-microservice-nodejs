@@ -22,7 +22,7 @@ const handle = serverless(app as any);
  */
 export const handler = (event, context, callback) => {
 	console.log('The stage is: ' + process.env.NODE_ENV);
-	
+
 	// Don't wait for the event loop to be empty to return the callback (mongoose/redis pool and/or cached variables).
 	context.callbackWaitsForEmptyEventLoop = false;
 
