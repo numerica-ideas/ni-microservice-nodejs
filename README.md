@@ -1,8 +1,12 @@
 # NumericaIdeas - Microservice (NodeJS) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fnumerica-ideas%2Fni-microservice-nodejs&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://blog.numericaideas.com)
 
-This package serves as a simple micro-service usable to build highly scalable micro backend packages to deploy in the cloud  either on EC2 (VPS) or Lambda (recommended).
+## Architecture Diagram
 
-Let's note that for EC2 (VPS) deployment Redis is mainly in used for inter-components communication, while AWS-SNS is used for the lambda path.
+![Diagram](architecture.png)
+
+This project serves as a simple micro-service usable to build highly scalable backends in an hybrid setup as part of a cloud migration, either in the cloud (Lambda or EC2) or into a custom VPS.
+
+Let's note that for EC2 (VPS) deployment, Redis is mainly in used for inter-components communication, while AWS-SNS is used for the Lambda path.
 
 ## Prerequisites
 - **MongoDB** the NoSQL database management system.
@@ -92,6 +96,6 @@ Under the hood ClaudiaJS uses AWS-CLI which is calling AWS API endpoints.
 
 ##  Testing
 
-Once ran, we should have the text "SERVICE IS FINE" once trying to access the [API PING](http://localhost:3000/ni-microservice-node/pingify).
+Once ran, we should have the text "SERVICE IS FINE" when attempting to access the [PING](http://localhost:3000/ni-microservice-node/pingify) endpoint.
 
 By dassiorleando (NumericaIdeas.com).
