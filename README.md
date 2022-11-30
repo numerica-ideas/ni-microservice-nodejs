@@ -48,7 +48,7 @@ Server deployment is comong and sometimes highly needed, here are some considera
 ### Lambda (Cloud Function)
 If deployed with Lambda we first need to make sure that the env var for each environment is set explicitly into their respective files (dev.json and prod.json).
 
-Then let's follow the steps below:
+Then let's replace `AWS_ACCOUNT_ID` (package.json & in the policies folder) with our AWS account ID prior to follow the steps below:
 
 1) Create the lambda: `npm run create`
 2) Define the env var for the lambda function (dev.json & prod.json)
