@@ -14,6 +14,7 @@
     "build": "tsc",
     "start": "npm run build && node bin/server.js",
     "start-light": "node bin/server.js",
+    "test": "ava --verbose",
     "create": "claudia create --name NiMicroService --region us-east-1 --handler lambda.handler --deploy-proxy-api --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip --timeout 900 --memory 1024 --aws-retries 0 --policies policies",
     "deploy:dev": "npm run get-vars:dev && claudia update --version dev --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip",
     "deploy:prod": "npm run get-vars:prod && claudia update --version prod --set-env-from-json prod.json --use-s3-bucket ni-deployments --s3-key ni-microservice-prod.zip",
@@ -49,6 +50,7 @@
     "@types/express": "^4.17.14",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^14.17.2",
+    "ava": "^5.1.0",
     "claudia": "5.13.1",
     "tslint": "5.20.1",
     "typescript": "^4.8.4"

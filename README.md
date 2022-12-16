@@ -24,7 +24,16 @@ Then you can run it by executing either `node server.js`, `npm start`, `forever 
 
 Once it's running (non production profile), you can access the Swagger generated API docs at http://localhost:3000/api-docs.
 
-s## Environment variables
+## Tests
+
+Unit tests are written using [AVAJS](https://github.com/avajs/ava), they are located into the **tests** folder and runnable with one of the following commands:
+- npm test
+- npx ava
+- npm ava --watch (watch for changes then running the tests again)
+
+Guide: [Syntax](https://github.com/avajs/ava/blob/master/docs/01-writing-tests.md) | [Assertions](https://github.com/avajs/ava/blob/master/docs/03-assertions.md) | [Timeouts](https://github.com/avajs/ava/blob/master/docs/07-test-timeouts.md)
+
+## Environment variables
 ### (EC2 - VPS)
 Use the .env (a copy of .env.sample file) to store sensitive config informations. The vars in use should be define in the config/index.js file explicitly for clarity/security purposes.
 

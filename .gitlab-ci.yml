@@ -11,7 +11,7 @@ image: node:latest
 # Let's build the micro-service, then test it prior to deployment.
 stages:
   - build
-#  - test (enable this to run some automated tests before deployments, recommended).
+  - test
   - deploy
 
 # Let's save time by caching the 'node_modules' amongst stages/pipelines
@@ -31,13 +31,13 @@ dependencies:
   - master
   - develop
 
-# To be enabled if the tests are performed prior to deployment (recommended)
-# testing:
-#   stage: test
-#   script: npm test
-#   only:
-#   - master
-#   - develop
+# Run tests as part of the pipelines (test stage)
+testing:
+  stage: test
+  script: npm test
+  only:
+  - master
+  - develop
 
 # Development deployment job, part of the `deploy` stage but for develop branch only.
 dev_deployment:
