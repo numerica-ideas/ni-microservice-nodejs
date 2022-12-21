@@ -20,10 +20,12 @@ cache:
   paths:
     - node_modules/
 
-# The dependencies job (build stage), that run `npm install` to make sure we have all our dependencies in place
+# The build stage: install dependencies then compile TypeScript files to JS ones
 dependencies:
   stage: build
-  script: npm install
+  script:
+    - npm install
+    - npm run build
   artifacts:
     paths:
       - node_modules/
@@ -45,12 +47,12 @@ dev_deployment:
   only:
   - develop
   script:
-  - apt-get update -y                       # Updating the Ubuntu Docker instance.
-  - python -V                               # Print out python version (for debugging only).
-  - apt install -y python-pip               # Install pip.
-  - pip install awscli --upgrade --user     # Install aws cli utility.
-  - export PATH=~/.local/bin:$PATH          # Required for awscli, the PATH.
-  - aws --version                           # Print out aws cli version (for debugging only).
+  - apt-get update -y                       # Updating the linux distribution.
+  - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  - unzip -u awscliv2.zip
+  - ./aws/install                           # Install aws-cli v2 from the downloaded zip file.
+  - rm -rf awscliv2.zip
+  - aws --version                           # Print aws-cli version (for debug only).
   - npm run deploy:dev                      # Run the dev deployment script.
 
 # Production deployment job, part of the `deploy` stage but for master branch only.
@@ -59,10 +61,10 @@ prod_deployment:
   only:
   - master
   script:
-  - apt-get update -y                       # Updating the Ubuntu Docker instance.
-  - python -V                               # Print out python version (for debugging only).
-  - apt install -y python-pip               # Install pip.
-  - pip install awscli --upgrade --user     # Install aws cli utility.
-  - export PATH=~/.local/bin:$PATH          # Required for awscli, the PATH.
-  - aws --version                           # Print out aws cli version (for debugging only).
+  - apt-get update -y                       # Updating the linux distribution.
+  - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  - unzip -u awscliv2.zip
+  - ./aws/install                           # Install aws-cli v2 from the downloaded zip file.
+  - rm -rf awscliv2.zip
+  - aws --version                           # Print aws-cli version (for debug only).
   - npm run deploy:prod                     # Run the prod deployment script.
