@@ -96,14 +96,19 @@ To warm the function 5 times and be sure there are at least 4/5 instances availa
 - Create routes for API endpoints into the **routes** folder.
 - Services can reside in the **services** folder.
 
-## CI/CD
+## CI/CD Pipeline
 
 ### Lambda
-For the lambda deployment we used the .gitlab-ci.yml file to automate the function deployment at AWS-Lambda side using Claudia commands. You should make sure to provide the AWS user that will be used to perform such tasks on your behald via GitLab runners.
+For lambda deployments, we used **GitLab CI/CD tool(via .gitlab-ci.yml config file)** to automate the function deployment on AWS-Lambda using ClaudiaJS. You have to provide the right AWS user credentials that will be used to perform such tasks on your behalf.
 
-Under the hood ClaudiaJS uses AWS-CLI which is calling AWS API endpoints.
+The **Pipeline Architecture** looks like the following:
 
-##  Testing
+![Diagram](deployment.drawio.svg)
+
+Under the hood ClaudiaJS uses **AWS-CLI** to interact with AWS resources, a walkthrough guide is available in the following article:
+https://blog.numericaideas.com/easiest-gitlab-cicd-lambda-pipeline
+
+## Testing
 
 Once ran, we should have the text "SERVICE IS FINE" when attempting to access the [PING](http://localhost:3000/ni-microservice-node/pingify) endpoint.
 
