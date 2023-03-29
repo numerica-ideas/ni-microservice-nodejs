@@ -8,6 +8,8 @@ This project serves as a simple micro-service usable to build highly scalable ba
 
 Let's note that for EC2 (VPS) deployment, Redis is mainly in used for inter-components communication, while AWS-SNS is used for the Lambda path.
 
+More explanations about these architecture decisions are present in a blog post: https://blog.numericaideas.com/multipurpose-cloud-migration-nodejs
+
 ## Prerequisites
 - **MongoDB** the NoSQL database management system.
 - **NodeJS** installed and running, version >=10 (14 is recommended).
