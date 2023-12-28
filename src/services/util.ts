@@ -2,6 +2,7 @@
  * Some useful utilities.
  * @author dassiorleando
  */
+import { Config } from '../config';
 
 /**
  * Default callaback doing nothing
@@ -22,14 +23,14 @@ export const error = function (error) {
 
 /**
  * To initialize some stuff when starting
- * @param {Object} config The config we defined into the corresponding folder
  * @returns {boolean} If or not we succeeded to initiate the App
  */
-export const init = function (config) {
-	if (!config) return false;
+export const init = function () {
+	if (!Config) return false;
 	console.log('Initing configs ...');
 
-	if (!config.JWT_SECRET) {
+	// TODO: the condition is to be improved
+	if (!Config.PORT) {
 		console.error('❌ Some env vars are required.');
 		return false;
 	}

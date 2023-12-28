@@ -1,3 +1,3 @@
 // Exporting all the models
 
-export { IEmpty, Empty } from './empty';
+export { Empty } from './empty';
