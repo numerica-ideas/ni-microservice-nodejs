@@ -13,15 +13,15 @@ import { Constant } from '../config/constant';
  */
 export const ingestingEvents = function (snsEvent, callback) {
     console.log('The event message ID is: ' + snsEvent.MessageId);
-    const filterPolicyType = snsEvent.MessageAttributes && snsEvent.MessageAttributes.type && snsEvent.MessageAttributes.type.Value;
+    const filterPolicyChannel = snsEvent.MessageAttributes && snsEvent.MessageAttributes.Channel && snsEvent.MessageAttributes.Channel.Value;
     if (snsEvent.Type === 'Notification') {
         // Let's process it depending on the filter policies
-        if (filterPolicyType === Constant.EVENTS[0]) {
+        if (filterPolicyChannel === Constant.EVENTS[0]) {
             callback(null, 'Filter policy A processed.');
-        } else if (filterPolicyType === Constant.EVENTS[1]) {
+        } else if (filterPolicyChannel === Constant.EVENTS[1]) {
             callback(null, 'Filter policy B processed.');
         } else {
-            callback(new Error('Unknown filter policy!'), null);
+            callback(new Error('Unknown policy channel!'), null);
         }
     } else {
         callback(new Error('We only process notification.'), null);

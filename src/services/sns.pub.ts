@@ -20,9 +20,9 @@ export const publishToTopic = async function (topic, dataToSend) {
         TopicArn: Config.TOPIC_ARN,
         Message: JSON.stringify(dataToSend),
         MessageAttributes: {
-            'type': {
-                'DataType': 'String',
-                'StringValue': topic
+            Channel: {
+                Type: 'String',
+                Value: topic
             }
         }
     }
