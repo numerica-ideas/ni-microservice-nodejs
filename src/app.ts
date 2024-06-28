@@ -10,7 +10,7 @@ import cors from 'cors';
 import cron from 'node-cron';
 
 // Some routes
-import emptyRoute from './routes/empty';
+import articleRoute from './routes/article';
 
 import * as redisSubService from './services/redis.sub';
 const router = express.Router();
@@ -33,11 +33,11 @@ app.use(eJwt({
 }));
 
 // The endpoints' prefix
-app.use('/ni-microservice-node', router);
+app.use('/api', router);
 
 // Set our api routes
 router.get('/pingify', (req: Request, res: Response) => res.send('SERVICE IS FINE'));
-router.use('/empties', emptyRoute);
+router.use('/articles', articleRoute);
 
 // Ingesting App events when deployed into a server, either we get them via SNS
 (async () => {

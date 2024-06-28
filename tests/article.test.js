@@ -1,5 +1,5 @@
 /**
- * Sample empty unit tests
+ * Sample article unit tests
  * @author dassiorleando
  * @since 1.5.0
  */

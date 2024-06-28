@@ -2,49 +2,49 @@ import * as Util from './util';
 import { Constant } from '../config/constant';
 const redisClient = require('../lib/redis')();
 
-export const cacheEmpty = async (empty) => {
-    if (!empty) return Promise.resolve(null);
-    const emptyId = empty?._id;
-    if (!emptyId) return Promise.reject('invalid empty data provided');
-    const emptyData = JSON.parse(JSON.stringify(empty));
-    await redisClient.hmsetAsync(Constant.EMPTY + ':' + emptyId, Util.objectToArray(emptyData));
-    return Promise.resolve('empty data saved successfully');
+export const cacheArticle = async (article) => {
+    if (!article) return Promise.resolve(null);
+    const articleId = article?._id;
+    if (!articleId) return Promise.reject('invalid article data provided');
+    const articleData = JSON.parse(JSON.stringify(article));
+    await redisClient.hmsetAsync(Constant.ARTICLE + ':' + articleId, Util.objectToArray(articleData));
+    return Promise.resolve('article data saved successfully');
 }
 
-export const readEmpty = async (emptyId) => {
-    if (!emptyId) return Promise.resolve(null);
-    const empty = await redisClient.hgetallAsync(Constant.EMPTY + ':' + emptyId);
-    if (!empty) return Promise.resolve(null);
+export const readArticle = async (articleId) => {
+    if (!articleId) return Promise.resolve(null);
+    const article = await redisClient.hgetallAsync(Constant.ARTICLE + ':' + articleId);
+    if (!article) return Promise.resolve(null);
 
     // Parsed fields values
-    Object.keys(empty).forEach(function (field) {
+    Object.keys(article).forEach(function (field) {
         try {
-            empty[field] = JSON.parse(empty[field]);
+            article[field] = JSON.parse(article[field]);
         } catch (error) {}
     });
 
-    return empty;
+    return article;
 }
 
-export const readEmptyField = async (emptyId, field) => {
-    if (!emptyId || !field) return Promise.resolve('');
-    return redisClient.hgetAsync(Constant.EMPTY + ':' + emptyId, field);
+export const readArticleField = async (articleId, field) => {
+    if (!articleId || !field) return Promise.resolve('');
+    return redisClient.hgetAsync(Constant.ARTICLE + ':' + articleId, field);
 }
 
-export const deleteEmpty = async (empty) => {
+export const deleteArticle = async (article) => {
     // Object validation
-    if (!empty || typeof empty !== 'object' || !empty._id) return Promise.reject('invalid empty provided!');
+    if (!article || typeof article !== 'object' || !article._id) return Promise.reject('invalid article provided!');
 
-    empty = JSON.parse(JSON.stringify(empty));
-    const emptyId = empty._id;
+    article = JSON.parse(JSON.stringify(article));
+    const articleId = article._id;
     
-    // Deleting all empty fields
-    const emptyFields = Object.keys(empty);
+    // Deleting all article fields
+    const articleFields = Object.keys(article);
     
-    // Deleting all empty fields
-    deleteModelFields(emptyId, emptyFields);
+    // Deleting all article fields
+    deleteModelFields(articleId, articleFields);
 
-    console.log(`empty of id ${emptyId} was deleted from cache.`);
+    console.log(`Article of id ${articleId} was deleted from cache.`);
 }
 
 /**
@@ -53,7 +53,7 @@ export const deleteEmpty = async (empty) => {
  * @param {string} fields the fields to delete.
  * @returns {void}
  */
-function deleteModelFields(id, fields = [], model = Constant.EMPTY) {
+function deleteModelFields(id, fields = [], model = Constant.ARTICLE) {
     if (!id) return;
     fields.forEach(function (field) {
         redisClient.hdel(model + ':' + id, field);

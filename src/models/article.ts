@@ -1,20 +1,20 @@
 /**
- * NI Empty model.
+ * NI Article model.
  * @author dassiorleando
  * @since 1.5.0
  */
 import { Schema, model, Document } from 'mongoose';
 
-export interface IEmpty extends Document {
+export interface IArticle extends Document {
     title: string;
     description: string;
 }
 
-const emptySchema = new Schema<IEmpty>({
+const articleSchema = new Schema<IArticle>({
     title: { type: String, required: true },
     description: String,
     createdAt: Date,
     updatedAt: Date
 }, { timestamps: true });
 
-export const EmptyModel = model<IEmpty>('Empty', emptySchema);
+export const ArticleModel = model<IArticle>('Article', articleSchema);

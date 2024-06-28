@@ -1,11 +1,11 @@
 /**
- * NI empty controller that handles empty API enpoints.
+ * NI article controller that handles article API enpoints.
  * @author dassiorleando
  * @since 1.5.0
  */
 import * as status from 'http-status';
 import { Request, Response } from 'express';
-import * as emptyService from '../services/empty';
+import * as articleService from '../services/article';
 import mongoose from 'mongoose';
 
 /**
@@ -14,7 +14,7 @@ import mongoose from 'mongoose';
  * @param {*} res
  */
 export const publicFunc = async (req: Request, res: Response) => {
-    res.status(status.OK).json({ success: true, message: emptyService.aFunction(true) });
+    res.status(status.OK).json({ success: true, message: articleService.aFunction(true) });
 }
 
 /**
@@ -23,7 +23,7 @@ export const publicFunc = async (req: Request, res: Response) => {
  * @param {*} res
  */
 export const protectedFunc = async (req: Request, res: Response) => {
-    res.status(status.OK).json({ success: true, message: emptyService.aFunction(false) });
+    res.status(status.OK).json({ success: true, message: articleService.aFunction(false) });
 }
 
 
@@ -32,8 +32,8 @@ export const protectedFunc = async (req: Request, res: Response) => {
  * @param {*} res
  */
 export const create = async (req: Request, res: Response) => {
-    const emptyCreated = await emptyService.create(req.body);
-    res.status(status.OK).json({ success: true, data: emptyCreated });
+    const articleCreated = await articleService.create(req.body);
+    res.status(status.OK).json({ success: true, data: articleCreated });
 }
 
 /**
@@ -41,18 +41,18 @@ export const create = async (req: Request, res: Response) => {
  * @param {*} res
  */
 export const findOne = async (req: Request, res: Response) => {
-    const emptyId = req.params.emptyId;
+    const articleId = req.params.articleId;
 
     // Check first if it is a valid Id
-    if (!emptyId || !mongoose.Types.ObjectId.isValid(emptyId)) {
+    if (!articleId || !mongoose.Types.ObjectId.isValid(articleId)) {
         return res.status(status.BAD_REQUEST).json({
             success: false,
             message: 'Invalid id provided!'
         });
     }
 
-    const emptyFound = await emptyService.findById(emptyId);
-    res.status(status.OK).json({ success: true, data: emptyFound });
+    const articleFound = await articleService.findById(articleId);
+    res.status(status.OK).json({ success: true, data: articleFound });
 }
 
 /**
@@ -60,8 +60,8 @@ export const findOne = async (req: Request, res: Response) => {
  * @param {*} res
  */
 export const findAll = async (req: Request, res: Response) => {
-    const emptiesFound = await emptyService.findAll();
-    res.status(status.OK).json({ success: true, data: emptiesFound });
+    const articlesFound = await articleService.findAll();
+    res.status(status.OK).json({ success: true, data: articlesFound });
 }
 
 /**
@@ -69,10 +69,10 @@ export const findAll = async (req: Request, res: Response) => {
  * @param {*} res
  */
 export const update = async (req: Request, res: Response) => {
-    const emptyId = req.params.emptyId;
+    const articleId = req.params.articleId;
 
     // Check first if it is a valid Id
-    if (!emptyId || !mongoose.Types.ObjectId.isValid(emptyId)) {
+    if (!articleId || !mongoose.Types.ObjectId.isValid(articleId)) {
         return res.status(status.BAD_REQUEST).json({
             success: false,
             message: 'Invalid id provided!'
@@ -80,8 +80,8 @@ export const update = async (req: Request, res: Response) => {
     }
 
     try {
-        const emptyUpdated = await emptyService.update(emptyId, req.body);
-        res.status(status.OK).json({ success: true, data: emptyUpdated });
+        const articleUpdated = await articleService.update(articleId, req.body);
+        res.status(status.OK).json({ success: true, data: articleUpdated });
     } catch (e) {
         console.log(e);
         res.status(status.INTERNAL_SERVER_ERROR).json(e);
@@ -93,16 +93,16 @@ export const update = async (req: Request, res: Response) => {
  * @param {*} res
  */
 export const deleteIt = async (req: Request, res: Response) => {
-    const emptyId = req.params.emptyId;
+    const articleId = req.params.articleId;
 
     // Check first if it is a valid Id
-    if (!emptyId || !mongoose.Types.ObjectId.isValid(emptyId)) {
+    if (!articleId || !mongoose.Types.ObjectId.isValid(articleId)) {
         return res.status(status.BAD_REQUEST).json({
             success: false,
             message: 'Invalid id provided!'
         });
     }
 
-    await emptyService.deleteIt(emptyId);
+    await articleService.deleteIt(articleId);
     res.status(status.OK).json({ success: true });
 }
