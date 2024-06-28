@@ -12,10 +12,15 @@ const global: any = {};
  * @returns {void}
  */
 function connect() {
-	const options = { host: Config.REDIS_HOST, port: Config.REDIS_PORT, password: Config.REDIS_AUTH, tls: {}, retryStrategy, prefix: Config.ENV + ':' };
-	if (!Config.REDIS_AUTH) {
-		delete options.tls;
-		delete options.password;
+	let options: any = { tls: {}, retryStrategy, prefix: Config.ENV + ':' };
+	if (Config.REDIS_URL) {
+		options = { ...options, url: Config.REDIS_URL };
+	} else {
+		options = { ...options, host: Config.REDIS_HOST, port: Config.REDIS_PORT, password: Config.REDIS_AUTH };
+		if (!Config.REDIS_AUTH) {
+			delete options.tls;
+			delete options.password;
+		}
 	}
 	return Redis.createClient(options);
 }

@@ -12,6 +12,7 @@ export const Config = {
     TOPIC_ARN: process.env.TOPIC_ARN,
 
     // Redis credentials
+    REDIS_URL: process.env.REDIS_URL,
     REDIS_HOST: process.env.REDIS_HOST,
     REDIS_PORT: process.env.REDIS_PORT,
     REDIS_AUTH: process.env.REDIS_AUTH,
