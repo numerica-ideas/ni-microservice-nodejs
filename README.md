@@ -44,7 +44,6 @@ Be sure the lambda role has the "AWSLambdaFullAccess" permission.
 ### Lambda
 
 - **dev.json** is in use for development.
-
 - **prod.json** is in use for production.
 
 Both files are created from **env.json** and are fetched/uploaded using the scripts **set-vars:env & get-vars:env**. These env variable are stored into secure buckets (ni-variables-dev & ni-variables-prod) S3 side.
@@ -61,17 +60,22 @@ If deployed with Lambda we first need to make sure that the env var for each env
 
 Then let's replace `AWS_ACCOUNT_ID` (package.json & in the policies folder) with our AWS account ID prior to follow the steps below:
 
-1) Create the lambda: `npm run create`
-2) Define the env var for the lambda function (dev.json & prod.json)
-3) Deploying/updating the App (claudia update):
+1) Create the lambda: `npm run create-lambda`
+2) Create the dev and prod SNS Topics and mention them in:
+    - The file `policies/ni-sns-pubsub.json`.
+    - In the NPM Script: sns:xxx
+    - In the dev.json or prod.json files for lambda deployment.
+3) Define the env vars for the lambda function (dev.json & prod.json)
+4) Save those env vars on S3 using the command `npm run set-vars:dev` or `npm run set-vars:prod`.
+5) Deploying/updating the App (claudia update):
     - `npm run deploy:dev` - Deploying the dev version
     - `npm run deploy:prod` - Deploying the prod version
-4) Subscribing to the [SNS](https://github.com/claudiajs/claudia/blob/master/docs/add-sns-event-source.md) topic for pub/sub:
+6) Subscribing to the [SNS](https://github.com/claudiajs/claudia/blob/master/docs/add-sns-event-source.md) topic for pub/sub:
     - `npm run sns:dev` - Dev topic
     - `npm run sns:prod` - Prod topic
-5) Run appropriate job-scheduler scripts to enable cron for Lambda: `npm run job:xxxxxx:xxx`
+7) Run appropriate job-scheduler scripts to enable cron for Lambda: `npm run job:xxxxxx:xxx`
 We need to deploy as many warmer as needed so that we have many lambda concurrent executions, meaning calling this script X times `npm run job:warm:xxx` per env.
-6) Destroying: claudia destroy
+8) Destroying: claudia destroy
 
 ## SNS (Lambda)
 AWS-SNS here is in use for inter-services communication for Lambda deployments, you can customise its scripts parameters into the package.json file.

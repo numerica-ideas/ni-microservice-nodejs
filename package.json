@@ -2,7 +2,7 @@
   "name": "ni-microservice-nodejs",
   "description": "NumericaIdeas NodeJS basic microservice for server (EC2) and cloud function (Lambda) deployments.",
   "author": "NumericaIdeas Network",
-  "version": "1.5.0",
+  "version": "1.8.0",
   "homepage": "https://github.com/numerica-ideas/ni-microservice-nodejs",
   "license": "MIT",
   "main": "bin/index",
@@ -15,7 +15,7 @@
     "start": "tsc && node bin/server.js",
     "start-light": "node bin/server.js",
     "test": "ava --verbose",
-    "create": "tsc && claudia create --name NiMicroService --region us-east-1 --handler bin/lambda.handler --deploy-proxy-api --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip --timeout 900 --memory 1024 --aws-retries 0 --policies policies",
+    "create-lambda": "tsc && claudia create --name NiMicroService --region us-east-1 --handler bin/lambda.handler --deploy-proxy-api --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip --timeout 900 --memory 1024 --aws-retries 0 --policies policies --runtime nodejs20.x",
     "deploy:dev": "npm run get-vars:dev && tsc && claudia update --version dev --set-env-from-json dev.json --use-s3-bucket ni-deployments --s3-key ni-microservice-dev.zip",
     "deploy:prod": "npm run get-vars:prod && tsc && claudia update --version prod --set-env-from-json prod.json --use-s3-bucket ni-deployments --s3-key ni-microservice-prod.zip",
     "sns:dev": "claudia add-sns-event-source --topic arn:aws:sns:us-east-1:AWS_ACCOUNT_ID:NI_DEV_EVENTS --filter-policy-file policy.json --version dev",
@@ -30,7 +30,7 @@
     "get-vars:prod": "aws s3 cp s3://ni-variables-prod/microservice.json prod.json"
   },
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "private": true,
   "dependencies": {
