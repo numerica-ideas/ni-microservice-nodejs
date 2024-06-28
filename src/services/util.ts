@@ -85,3 +85,20 @@ export const getErrorMessage = function (err) {
 
 	return message;
 };
+
+export const objectToArray = function (object) {
+	if (!object || typeof object !== 'object') return [];
+	const array = [];
+  
+	for (const field in object) {
+	  if (object.hasOwnProperty(field)) {
+		let value = object[field];
+		if (typeof value === 'object') {
+		  value = JSON.stringify(value);
+		}
+		array.push(field, value && value !== 'null' ? value : '');
+	  }
+	}
+  
+	return array;
+}

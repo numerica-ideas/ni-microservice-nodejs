@@ -35,4 +35,11 @@ router.get('/public', emptyController.publicFunc);
  */
 router.get('/protected', guard.check([['ADMIN'], ['MODERATOR'], ['USER']]), emptyController.protectedFunc);  // Protectd route
 
+// CRUD routes
+router.post('/', emptyController.create);
+router.get('/', emptyController.findAll);
+router.get('/:emptyId', emptyController.findOne);
+router.put('/:emptyId', emptyController.update);
+router.delete('/:emptyId', emptyController.deleteIt);
+
 export = router;

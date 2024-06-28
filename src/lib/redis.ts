@@ -64,7 +64,7 @@ function retryStrategy(options) {
 
 /**
  * Connecting to the defined Redis server.
- * @param {boolean} force Force gettina new client, required for pub/sub.
+ * @param {boolean} force Force getting a new client, required for pub/sub.
  * @returns {void}
  */
 module.exports = (force) => {
