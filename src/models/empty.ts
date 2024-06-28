@@ -7,9 +7,7 @@ import { Schema, model, Document } from 'mongoose';
 
 export interface IEmpty extends Document {
     title: string;
-    descriptdion: string;
-    createdAt: Date;
-    updatedAt: Date;
+    description: string;
 }
 
 const emptySchema = new Schema<IEmpty>({
@@ -17,18 +15,6 @@ const emptySchema = new Schema<IEmpty>({
     description: String,
     createdAt: Date,
     updatedAt: Date
-});
+}, { timestamps: true });
 
-emptySchema.pre('save', function (next) {
-    const currentDate = new Date();
-
-    // Edit the updatedAt field to the current date
-    if (!this['keepUpdatedDate']) this['updatedAt'] = currentDate;
-
-    // if createdAt doesn't exist, add to that field
-    if (!this['createdAt']) this['createdAt'] = currentDate;
-
-    next();
-});
-
-export const Empty = model<IEmpty>('Empty', emptySchema);
+export const EmptyModel = model<IEmpty>('Empty', emptySchema);
