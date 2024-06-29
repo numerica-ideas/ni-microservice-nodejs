@@ -13,8 +13,6 @@ export interface IArticle extends Document {
 const articleSchema = new Schema<IArticle>({
     title: { type: String, required: true },
     description: String,
-    createdAt: Date,
-    updatedAt: Date
 }, { timestamps: true });
 
 export const ArticleModel = model<IArticle>('Article', articleSchema);
