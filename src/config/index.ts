@@ -9,7 +9,7 @@ export const Config = {
 
     // Determining if we did a lambda or ec2 deployment
     IS_LAMBDA: process.env.IS_LAMBDA == 'true' ? true : false,
-    TOPIC_ARN: process.env.TOPIC_ARN,
+    SNS_TOPIC_ARN: process.env.SNS_TOPIC_ARN,
 
     // Redis credentials
     REDIS_URL: process.env.REDIS_URL,

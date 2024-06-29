@@ -17,7 +17,7 @@ export const publishToTopic = async function (topic, dataToSend) {
 
     // The parameter
     const params: any = {
-        TopicArn: Config.TOPIC_ARN,
+        TopicArn: Config.SNS_TOPIC_ARN,
         Message: JSON.stringify(dataToSend),
         MessageAttributes: {
             Channel: {
