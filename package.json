@@ -27,7 +27,8 @@
     "set-vars:dev": "aws s3 cp dev.json s3://ni-variables-dev/microservice.json",
     "set-vars:prod": "aws s3 cp prod.json s3://ni-variables-prod/microservice.json",
     "get-vars:dev": "aws s3 cp s3://ni-variables-dev/microservice.json dev.json",
-    "get-vars:prod": "aws s3 cp s3://ni-variables-prod/microservice.json prod.json"
+    "get-vars:prod": "aws s3 cp s3://ni-variables-prod/microservice.json prod.json",
+    "destroy": "claudia destroy"
   },
   "engines": {
     "node": "20"
